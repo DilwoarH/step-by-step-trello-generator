@@ -48,8 +48,29 @@ class IndexController
             .then(function(lists){
                 var list_id = lists[0].id;
                 var name = step.title;
-                var description = JSON.stringify(step.contents, null, 2);
-                _this.trelloService.createCardForList(list_id, name, description);
+                var description = ''; //JSON.stringify(step.contents, null, 2);
+                var checklistItems = [];
+                step.contents.forEach(content => {
+                    switch (content.type) {
+                        case "paragraph":
+                            description += `${content.text} `;
+                            break;
+                        case "list":
+                            content.contents.forEach(item => {
+                                checklistItems.push(item.text);
+                            });
+                            break;
+                        default:
+                            description += JSON.stringify(content, null, 2);
+                            break;
+                    }
+                });
+                _this.trelloService.createCardForList(list_id, name, description)
+                .then(function(card){
+                    if (checklistItems.length) {
+                        _this.trelloService.createChecklistsForCard(card.id, checklistItems);
+                    }
+                });
             });
     }
 

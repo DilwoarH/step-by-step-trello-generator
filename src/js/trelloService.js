@@ -65,4 +65,17 @@ class TrelloService
         if (!list_id || !name) return { "error": "Invalid data." };
         return this.trello.post(`/cards/?idList=${list_id}&name=${name}&desc=${description}`);
     }
+
+    createChecklistsForCard( card_id, items )
+    {
+        if (!card_id || !items) return { "error": "Invalid data." };
+        var name = "Actions / Useful content";
+        var _this = this;
+        this.trello.post(`/checklists/?idCard=${card_id}&name=${name}`)
+        .then(function(checklist){
+            items.forEach(item => {
+                _this.trello.post(`/checklists/${checklist.id}/checkItems?name=${item}`);
+            });
+        });
+    }
 }
