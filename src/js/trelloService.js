@@ -4,8 +4,8 @@ class TrelloService
         this.trello = window.Trello;
     }
 
-    authorize() {
-        this.trello.authorize({
+    authorize(success_callback = null, error_callback = null) {
+        return this.trello.authorize({
             type: 'popup',
             name: 'GOV.UK Step by Step Trello App',
             scope: {
@@ -13,8 +13,8 @@ class TrelloService
                 write: 'true'
             },
             expiration: 'never',
-            success: this.authenticationSuccess,
-            error: this.authenticationFailure
+            success: success_callback ? success_callback : this.authenticationSuccess,
+            error: error_callback ? error_callback : this.authenticationFailure
         });
     }
 

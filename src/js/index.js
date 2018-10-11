@@ -13,7 +13,7 @@ class IndexController
         var _this = this;
         var _btn = $('#trello-authorize--button');
         _btn.on('click', function() {
-            _this.trelloService.authorize();
+            _this.trelloService.authorize(AuthSuccessCallBack);
             _this.performAuthChecks();
         });
     }
@@ -71,4 +71,11 @@ class IndexController
                 .show();
         }
     }
+}
+
+/* 
+ * Global callbacks
+ */
+var AuthSuccessCallBack = function() {
+    _indexController.performAuthChecks();
 }
