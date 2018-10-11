@@ -2,8 +2,9 @@ class IndexController
 {
     constructor() {
         this.board = null;
+        this.base_url = "https://gov.uk";
         this.trelloService = new TrelloService();
-        this.stepByStepService = new StepByStepService('learn-to-drive-a-car', $('.step-by-step--preview'));
+        this.stepByStepService = new StepByStepService('apply-standard-visitor-visa', $('.step-by-step--preview'));
         this.performAuthChecks();
         this.initAuthoriseBtnListener();
         this.initGenerateBtnListener();
@@ -57,7 +58,7 @@ class IndexController
                             break;
                         case "list":
                             content.contents.forEach(item => {
-                                checklistItems.push(item.text);
+                                checklistItems.push(`${item.text} - ${_this.base_url}/${item.href}`);
                             });
                             break;
                         default:
