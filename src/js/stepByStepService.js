@@ -13,7 +13,7 @@ class StepByStepService
     }
 
     content() {
-        return $.getJSON('https://www.gov.uk/api/content/learn-to-drive-a-car')
+        return $.getJSON(this.apiUrl())
     }
 
     initStepByStepNav() {
@@ -43,9 +43,9 @@ class StepByStepService
     buildHTML() {
         var html = '';
 
-        html += `<h1>${this.step_nav.title}</h1>`;
-        html += this.step_nav.introduction;
-        html += '<ol>';
+        html += `<h2 class="govuk-heading-l">${this.step_nav.title}</h2>`;
+        html += `<p class="govuk-body govuk-!-font-weight-bold">${this.step_nav.introduction.replace('<p>','').replace('</p>','')}</p>`;
+        html += '<ol class="govuk-list govuk-list--number">';
         this.step_nav.steps.forEach(step => {
             html += `<li>${step.title}</li>`;
         });

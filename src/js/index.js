@@ -56,7 +56,7 @@ class IndexController
     displayBoardData(board) {
         var displayElement = $('.trello-board--data');
         var html = '';
-        html += '<h2>Board data</h2>';
+        html += '<h2 class="govuk-heading-l">Board data</h2>';
         html += `<a href="${board.url}" target="_blank">${board.url}<a>`;
         return displayElement.html(html);
     }
