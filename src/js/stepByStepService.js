@@ -104,7 +104,7 @@ class StepByStepService
     }
 
     displayStepByStepNotFound() {
-        var html = ```
+        var html = `
             <div class="govuk-warning-text">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
@@ -112,7 +112,7 @@ class StepByStepService
                     No matching step by steps found
                 </strong>
             </div>
-        ```;
+        `;
         var elm = this.domElement;
         elm.html(html);
     }
