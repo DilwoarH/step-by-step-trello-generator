@@ -4,10 +4,10 @@ class IndexController
         this.board = null;
         this.step_by_step_dom_element = $('.step-by-step--preview');
         this.base_url = "https://gov.uk";
-        this.step_by_step_url_path = this.getUrlPath();
-        if (!this.step_by_step_url_path) return this.step_by_step_dom_element.text('Error - No step by step');
+        this.step_by_step_url = this.getUrlPath();
+        if (!this.step_by_step_url) return this.step_by_step_dom_element.text('Error - No step by step');
         this.trelloService = new TrelloService();
-        this.stepByStepService = new StepByStepService(this.step_by_step_url_path, this.step_by_step_dom_element);
+        this.stepByStepService = new StepByStepService(this.step_by_step_url, this.step_by_step_dom_element);
         this.performAuthChecks();
         this.initAuthoriseBtnListener();
         this.initGenerateBtnListener();
@@ -17,7 +17,7 @@ class IndexController
         var params = new URLSearchParams(window.location.search);
         if (!params.get('url')) return false;
         var url = new URL(params.get('url'));
-        return url.pathname;
+        return url;
     }
 
     initAuthoriseBtnListener() {
