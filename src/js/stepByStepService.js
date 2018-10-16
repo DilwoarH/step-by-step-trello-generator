@@ -37,7 +37,7 @@ class StepByStepService
                 if (!_this.step_nav && data.links.part_of_step_navs)
                 {
                     data.links.part_of_step_navs.forEach(step_nav => {
-                        if ( activeStepByStepId == step_nav.id ) {
+                        if ( activeStepByStepId == step_nav.content_id ) {
                             _this.step_nav = step_nav.details.step_by_step_nav;
                             return false;
                         }
@@ -47,7 +47,7 @@ class StepByStepService
                 if (!_this.step_nav && data.links.related_to_step_navs) 
                 {
                     data.links.related_to_step_navs.forEach(step_nav => {
-                        if ( activeStepByStepId == step_nav.id ) {
+                        if ( activeStepByStepId == step_nav.content_id ) {
                             _this.step_nav = step_nav.details.step_by_step_nav;
                             return false;
                         }
