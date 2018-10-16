@@ -28,7 +28,7 @@ class StepByStepService
         content.then(function(data) {
             _this.step_nav = data.details.step_by_step_nav;
 
-            if (!_this.step_nav && data.links.part_of_step_navs.length == 1) 
+            if (!_this.step_nav && data.links.part_of_step_navs && data.links.part_of_step_navs.length == 1) 
             {
                 _this.step_nav = data.links.part_of_step_navs[0].details.step_by_step_nav;
             }
