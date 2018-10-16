@@ -9,7 +9,7 @@ class StepByStepService
     }
 
     apiUrl() {
-        return `${this.api_path}/${this.path}`;
+        return `${this.api_path}${this.path}`;
     }
 
     content() {
