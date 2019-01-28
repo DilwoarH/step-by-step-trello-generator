@@ -27,7 +27,7 @@ class TrelloService
     }
 
     isAuthorized() {
-        return window.Trello.authorized();
+        return this.trello.authorized();
     }
 
     /* 
@@ -44,8 +44,17 @@ class TrelloService
      * Return Promise
      */
     getBoard( id = null ) {
-        if (!name) return { "error": "No id given." };
-        return Trello.boards.get(id);
+        if (!id) return { "error": "No id given." };
+        return this.trello.boards.get(id);
+    }
+    
+    /* 
+     * Get All Board
+     * Return Promise
+     */
+    getAllBoard( user_id = null ) {
+        if (!user_id) return { "error": "No user_id given." };
+        return this.trello.get(`/members/${user_id}/boards`);
     }
 
     /* 
@@ -54,7 +63,7 @@ class TrelloService
      */
     getListsForBoard( id = null ) {
         if (!id) return { "error": "No id given." };
-        return Trello.boards.get(`${id}/lists`);
+        return this.trello.boards.get(`${id}/lists`);
     }
 
     /* 
